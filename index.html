@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>For Khushi ❤️</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
@@ -14,23 +14,25 @@
     }
 
     body {
-      height: 100vh;
+      min-height: 100vh;
       background: radial-gradient(circle at top, #1a001f, #000000);
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
+      overflow-x: hidden;
       color: white;
+      padding: 20px;
     }
 
     /* Cinematic glow */
     body::before {
       content: "";
-      position: absolute;
+      position: fixed;
       width: 200%;
       height: 200%;
       background: radial-gradient(circle, rgba(255,77,109,0.15), transparent 40%);
       animation: rotateGlow 20s linear infinite;
+      z-index: 0;
     }
 
     @keyframes rotateGlow {
@@ -45,8 +47,8 @@
       border-radius: 25px;
       box-shadow: 0 25px 80px rgba(255,77,109,0.35);
       text-align: center;
-      max-width: 500px;
-      width: 90%;
+      max-width: 520px;
+      width: 100%;
       position: relative;
       animation: fadeIn 1.5s ease;
       z-index: 2;
@@ -59,14 +61,15 @@
 
     .romantic {
       font-family: 'Great Vibes', cursive;
-      font-size: 52px;
+      font-size: clamp(36px, 6vw, 52px);
       color: #ff4d6d;
       text-shadow: 0 0 25px rgba(255,77,109,0.8);
+      line-height: 1.2;
     }
 
     input {
       padding: 14px;
-      width: 85%;
+      width: 100%;
       border-radius: 12px;
       border: none;
       margin-top: 18px;
@@ -81,7 +84,7 @@
       border-radius: 40px;
       background: linear-gradient(45deg,#ff4d6d,#ff758c);
       color: white;
-      font-size: 17px;
+      font-size: clamp(15px, 4vw, 17px);
       cursor: pointer;
       transition: 0.4s;
     }
@@ -94,17 +97,18 @@
     .hidden { display: none; }
 
     .message {
-      font-size: 19px;
+      font-size: clamp(16px, 4vw, 19px);
       margin-top: 25px;
       line-height: 1.8;
       color: #f1f1f1;
     }
 
     .heart {
-      position: absolute;
+      position: fixed;
       color: #ff4d6d;
       animation: float 8s infinite ease-in;
       z-index: 1;
+      pointer-events: none;
     }
 
     @keyframes float {
@@ -115,12 +119,46 @@
 
     .yes-btn {
       background: linear-gradient(45deg,#00c853,#69f0ae);
-      margin-right: 12px;
+      margin-right: 10px;
     }
 
     .no-btn {
       background: #555;
       position: absolute;
+    }
+
+    /* Tablet */
+    @media (max-width: 900px) {
+      .card {
+        padding: 35px;
+        border-radius: 20px;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      body {
+        padding: 15px;
+        align-items: center;
+      }
+
+      .card {
+        padding: 28px 22px;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      .yes-btn {
+        margin-right: 0;
+        margin-bottom: 12px;
+      }
+
+      .no-btn {
+        position: relative;
+        margin-top: 10px;
+      }
     }
 
   </style>
@@ -162,7 +200,7 @@
 </div>
 
 <script>
-  const girlfriendName = "Khushi"; // 🔥 Change name here anytime
+  const girlfriendName = "Khushi";
 
   function checkPassword() {
     const pass = document.getElementById('password').value;
@@ -170,8 +208,6 @@
       document.getElementById('login').classList.add('hidden');
       document.getElementById('proposal').classList.remove('hidden');
       createHearts();
-
-      // Play music after interaction (browser rule)
       document.getElementById('bgMusic').play();
     } else {
       document.getElementById('error').innerText = "Wrong password! Try again ❤️";
@@ -208,8 +244,8 @@
 
   function moveNo(){
     const btn = document.getElementById('noBtn');
-    btn.style.top = Math.random()*250 + 'px';
-    btn.style.left = Math.random()*250 + 'px';
+    btn.style.top = Math.random()*200 + 'px';
+    btn.style.left = Math.random()*200 + 'px';
   }
 </script>
 
